@@ -3,7 +3,7 @@
 ### cni : calico
 ### cri : containerd 1.6.x
 ### os : ubuntu 20.04, 22.04
-### provisioner : nfs
+### provisioner : rook-cephfilesystem
 ### kubespray : release-2.20
 ---------------------
 ## before you run this script
