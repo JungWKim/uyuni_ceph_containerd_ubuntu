@@ -140,6 +140,7 @@ git clone -b release-0.4 https://github.com/xiilab/Uyuni_Deploy.git
 cd ~/Uyuni_Deploy
 
 sed -i "5,10d" helmfile.yaml
+sed -i "16,19d" helmfile.yaml
 sed -i "s/192.168.56.13/${NFS_IP}/g" environments/default/values.yaml
 sed -i "s:/kube_storage:${NFS_PATH}:g" environments/default/values.yaml
 sed -i "s/192.168.56.11/${IP}/g" environments/default/values.yaml
