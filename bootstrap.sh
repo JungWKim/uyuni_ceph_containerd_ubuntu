@@ -111,7 +111,7 @@ helm repo add rook-release https://charts.rook.io/release
 helm search repo rook-ceph
 kubectl create namespace rook-ceph
 helm install --namespace rook-ceph rook-ceph rook-release/rook-ceph
-sleep 300
+sleep 120
 
 # enable toolbox
 sed -i "26s/false/true/g" ~/rook/deploy/charts/rook-ceph-cluster/values.yaml
@@ -128,7 +128,7 @@ sed -i "s/size: 3/size: 2/g" ~/rook/deploy/charts/rook-ceph-cluster/values.yaml
 cd ~/rook/deploy/charts/rook-ceph-cluster
 helm install -n rook-ceph rook-ceph-cluster --set operatorNamespace=rook-ceph rook-release/rook-ceph-cluster -f values.yaml
 cd ~
-sleep 300
+sleep 600
 
 # set ceph-filesystem as default storageclass
 kubectl patch storageclass ceph-block -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
@@ -139,7 +139,9 @@ kubectl patch storageclass ceph-bucket -p '{"metadata": {"annotations":{"storage
 git clone -b release-0.4 https://github.com/xiilab/Uyuni_Deploy.git
 cd ~/Uyuni_Deploy
 
+# not to create unnecessary environment
 sed -i "5,10d" helmfile.yaml
+# not to deploy nfs-provisioner
 sed -i "16,19d" helmfile.yaml
 sed -i "s/192.168.56.13/${NFS_IP}/g" environments/default/values.yaml
 sed -i "s:/kube_storage:${NFS_PATH}:g" environments/default/values.yaml
