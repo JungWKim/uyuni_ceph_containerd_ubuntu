@@ -95,6 +95,7 @@ wget https://github.com/containerd/nerdctl/releases/download/v1.6.2/nerdctl-full
 # install nerdctl
 sudo tar Cxzvvf /usr/local nerdctl-full-1.6.2-linux-amd64.tar.gz
 
+# copy containerd configuration file to /etc/containerd/
 sudo cp ~/uyuni_ceph_containerd_ubuntu/config.toml /etc/containerd/
 sudo systemctl restart containerd
 
