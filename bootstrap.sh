@@ -111,7 +111,7 @@ helm repo add rook-release https://charts.rook.io/release
 helm search repo rook-ceph
 kubectl create namespace rook-ceph
 helm install --namespace rook-ceph rook-ceph rook-release/rook-ceph
-sleep 30
+sleep 300
 
 # enable toolbox
 sed -i "26s/false/true/g" ~/rook/deploy/charts/rook-ceph-cluster/values.yaml
@@ -128,7 +128,7 @@ sed -i "s/size: 3/size: 2/g" ~/rook/deploy/charts/rook-ceph-cluster/values.yaml
 cd ~/rook/deploy/charts/rook-ceph-cluster
 helm install -n rook-ceph rook-ceph-cluster --set operatorNamespace=rook-ceph rook-release/rook-ceph-cluster -f values.yaml
 cd ~
-sleep 180
+sleep 300
 
 # set ceph-filesystem as default storageclass
 kubectl patch storageclass ceph-block -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
